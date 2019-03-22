@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MVVM</title>
+    <script src="./vue-2.6.10.js"></script>
+</head>
+<body>
+    <div id="id">
+        <p>{{name}}</p>
+    </div>
+    <script>
+        var data = {
+            name: '111',
+            price: '222'
+        };
+        var vm = new Vue({
+            el: '#id',
+            data,
+        })
+
+        // 实现一个render 函数
+        function _render(vm) {
+            with(this) {
+                return _c('div', {
+                    attrs: {
+                        "id": "id"
+                    }
+                }, [_c('p', [_v(_s(name))])])
+            }
+        }
+        
+    </script>
+</body>
+</html>
