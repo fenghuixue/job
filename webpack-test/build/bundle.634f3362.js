@@ -91,9 +91,20 @@
   !*** ./src/index.js ***!
   \**********************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("console.log('11111')\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("var _class;\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nconsole.log('11111');\n\n__webpack_require__(/*! ./index.less */ \"./src/index.less\");\n\nvar arr = [1, 3, 4, 5];\narr.map(function (item) {\n  console.log(item);\n});\nconsole.log(arr);\n\nvar main = log(_class = function main() {\n  _classCallCheck(this, main);\n\n  console.log('this is a class');\n}) || _class;\n\nnew main();\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/index.less":
+/*!************************!*\
+  !*** ./src/index.less ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/index.less?");
 
 /***/ })
 
