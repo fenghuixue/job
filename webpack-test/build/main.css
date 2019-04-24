@@ -1,9 +1,4 @@
-body {
-  background: red;
-}
-div {
-  border: 1px solid #ccc;
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+.el-button {
+  margin-top: 500px;
 }
 

@@ -1,0 +1,10 @@
+熟悉html5、css3、原生javascript, typescript, 熟悉ES6，了解ES7新特性；
+熟悉vue+vuex+vue-router+axios+elementUI, 了解vue3.0的新功能，熟悉vue的render函数，watch，computed等的数据绑定原理，熟悉vue的生命周期和钩子函数；
+熟悉react+redux(mobx)+router+JSX+ant，了解vue和react的设计区别，能够根据项目需求选择适合的开发框架；
+了解vdom和snabbdom.js的核心原理, 能够使用babel插件模拟实现ast语法树；
+熟悉jQuery、zepto, 熟悉jQuery底层原理，熟悉ztree、echarts、iscroll等API
+熟悉webpack, 了解常用的loader和plugins, 能够结合gulp优化业务前端打包优化配置。能够根据rollup和webpack的使用场景，选择适合的项目打包工具;
+熟悉移动端开发和调试，了解移动端h5的常见问题的解决方案。自学开发过微信小程序，了解mpvue, wepy等框架的转换原理，了解flutter框架;
+熟悉http协议，了解PWA，了解浏览器的协议和缓存机制，能够解决常见兼容性问题。熟悉常用chrome调试方法，熟悉charles，能够使用chrome插件提高效率;
+熟悉git基本原理，了解常见linux、vim操作, 能够运用命令行、编写shell脚本提高开发效率；
+了解常见算法和数据结构，了解常用的设计模式，优化日常开发解决方案；

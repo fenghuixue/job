@@ -1,6 +1,10 @@
 console.log('11111')
 
-require('./index.less');
+import './index.less'
+import Vue from 'vue';
+import Index from './index.vue';
+import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
 
 let arr = [1, 3, 4, 5];
 
@@ -9,12 +13,12 @@ arr.map(item => {
 });
 
 console.log(arr)
+Vue.use(ElementUI)
 
-@log
-class main {
-    constructor() {
-        console.log('this is a class')
-    }
-}
+new Vue({
+    el: '#J_view_box',
+    // router,
+    // store,
+    render: h => h(Index)
+})
 
-new main();

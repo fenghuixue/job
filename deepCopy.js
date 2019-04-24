@@ -1,5 +1,6 @@
 var deepCopy = function(obj) {
-    if (typeof obj !== 'object') return;
+    // 这儿有个坑，typeof null 也为'object'
+    if (typeof obj !== 'object' || obj === null) return obj;
     var newObj = obj instanceof Array ? [] : {};
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) {

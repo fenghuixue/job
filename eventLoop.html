@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Loop</title>
+    <script src="./vue-2.6.10.js"></script>
+</head>
+<body>
+    <div id="J_content_box">111</div>
+    <script>
+        let data = {
+            name: 'zhangsan',
+            age: 22
+        };
+        new Vue({
+            el: '#J_content_box',
+            data,
+            mounted() {
+                let defer = new Promise((resolve, reject) => {
+                    console.log(222)
+                    resolve();
+                });
+                defer.then(() => {
+                    console.log(222)
+                })
+                this.$nextTick(() => {
+                    console.log(1111)
+                })
+            }
+        })
+    </script>
+</body>
+</html>

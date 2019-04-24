@@ -4,6 +4,9 @@ let HtmlWebpackPluigin = require('html-webpack-plugin');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 let UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+let VueLoaderPlugin = require('vue-loader/lib/plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     optimization: { // 优化项
@@ -42,8 +45,19 @@ module.exports = {
              filename: '[name].css',
              chunkFilename: '[id].css'
         }),
+        new VueLoaderPlugin(),
+        new BundleAnalyzerPlugin(),
+        new CopyWebpackPlugin([{
+            context: './src',
+            from: 'libs',
+            to: 'libs'
+        }]),
         
     ],
+    externals: {
+        jquery: 'jQuery',
+        vue: "window.Vue"
+    },
     module: {
         rules: [
             {
@@ -75,6 +89,15 @@ module.exports = {
                     'less-loader'
                 ] 
             },
+            {
+                test: /\.vue$/,
+                use: 'vue-loader',
+                // exclude: /libs|node_modules/,
+            },
+            {   
+                test: /\.(woff|svg|eot|ttf)\??.*$/,
+                loader: 'url-loader'
+            }
         ]
     }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "test-pack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "test-pack": "./bin/test-pack.js"
+  },
+  "dependencies": {
+    "@babel/generator": "^7.4.0",
+    "@babel/traverse": "^7.4.0",
+    "@babel/types": "^7.4.0",
+    "babylon": "^6.18.0"
+  }
+}
