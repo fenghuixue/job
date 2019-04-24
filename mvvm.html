@@ -6,7 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MVVM</title>
     <script src="./vue-2.6.10.js"></script>
+<<<<<<< HEAD
     <script src="./vue-watch.js"></script>
+=======
+    <script src="./curry.js"></script>
+>>>>>>> ee084b35bfb7f49436a084f04dcab383e57ab12b
 </head>
 <body>
     <div id="id">
@@ -32,6 +36,32 @@
                 }, [_c('p', [_v(_s(name))])])
             }
         }
+
+        // vm._c 相当于 snabbdom的h函数
+
+        vm._update = function(vnode) {
+            const preVnode = vm._vnode;
+            vm._vnode = vnode;
+            if (!preVnode) {
+                vm.$el = vm.__patch__(vm.$el, vnode);
+            } else {
+                vm.$el = vm.__patch__(preVnode, vnode);
+            }
+        }
+        // updateComponent 实现了 vnode的patch方法
+        function updateComponent() {
+            // vm.render 即为上面 render函数返回的vnode
+            vm._update(vm._render());
+        }
+
+        Object.defineProperty(vm, key, {
+            get: function() {
+                return data[key];
+            },
+            set(newVal) {
+                data[key] = newVal;
+            }
+        });
         
     </script>
 </body>
