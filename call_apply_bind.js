@@ -14,7 +14,6 @@ function bar(name, age) {
     console.log(this.value);
 }
 bar.call2(foo, 'black', '18') // black 18 1
-
 Function.prototype.apply2 = function(context = window) {
     context.fn = this
     let result;
@@ -23,7 +22,7 @@ Function.prototype.apply2 = function(context = window) {
         result = context.fn(...arguments[1])
     } else {
         result = context.fn()
-    }
+    }c
     delete context.fn
     return result
 }
