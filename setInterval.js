@@ -8,6 +8,7 @@ function myInterval(flag) {
     if (flag) {
         func = setTimeout(function() {
             myInterval(true);
+            console.log('11111');f
         }, 1000)
     } else {
         console.log('结束了~~~')
