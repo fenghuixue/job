@@ -1,16 +1,17 @@
 <template>
     <div>
         <input type="file" class="" @change="onchange"/>
-        <div class="image-box">
+        <div class="image-box" ref="imgRef">
             <img v-if="target" 
+                width="50px"
                 ref="imageTarget"
                 :src="target" 
-                width="200px"
                 :style="{'transform': transform}"
                 @touchstart="onTouchstart" 
                 @touchmove="onTouchmove" 
                 @touchend="onTouchend"/>
         </div>
+        <canvas ref="canvasRef" class="image-box canvas-box"></canvas>
     </div>
 </template>
 
@@ -32,6 +33,12 @@ export default {
                 curLength: 0,
                 angle: 0
             },
+            default: {
+                scale: 1,
+                rad: 0,
+                x: 0,
+                y: 0
+            },
             transform: ''
             
         };
@@ -45,6 +52,13 @@ export default {
             this.target = window.webkitURL.createObjectURL(f) 
         },
         onTouchstart(e) {
+            if (e.touches.length == 1) {
+                this.fingers = e.touches.length;
+                let startPoint = this.gesture.getPoint(e, 0);
+                this.start = {
+                    startPoint
+                }  
+            }
             if (e.touches.length == 2) {
                 this.fingers = e.touches.length;
                 // 获取开始的点
@@ -58,18 +72,22 @@ export default {
                     startVct,
                     startLength
                 }
-                // 获取图片的初始位置
-                
-                // let style = window.getComputedStyle(this.$refs.imageTarget, null)
-                // let cssTrans = style.transform || style.webkitTransform;
-                // if (window.getComputedStyle && cssTrans !== 'none') {
-                //     this.matrixTo(cssTrans)
-                // }
             }
+            this.imageMatrix.length && (this.default = {
+                ...this.default,
+                ...this.matrixTo()
+            });
         },
         onTouchmove(e) {
             if (e.touches.length < this.fingers) {
                 return;
+            }
+            if (e.touches.length == 1) {
+                this.fingers = e.touches.length;
+                let curPoint = this.gesture.getPoint(e, 0);
+                let x = curPoint.x - this.start.startPoint.x;
+                let y = curPoint.y - this.start.startPoint.y;
+                this.set(0, 1, x, y);
             }
 
             if (e.touches.length == 2) {
@@ -88,20 +106,46 @@ export default {
                     scale,
                     rad
                 }
-                this.set(this.cur.rad, this.cur.scale)
+                this.set(this.cur.rad, this.cur.scale, 0, 0)
             }
 
         },
         onTouchend(e) {
-
+            let target = this.$refs.canvasRef;
+            let img = this.$refs.imageTarget;
+            let ctx = target.getContext("2d");
+            ctx.clearRect(0, 0, target.offsetWidth, target.offsetHeight);
+            let width = img.offsetWidth;
+            let height = img.offsetHeight;
+            let {x, y, scale, rad} = this.matrixTo();
+            ctx.translate(width/2 + x, height/2 + y);
+            ctx.rotate(rad);
+            ctx.drawImage(img, x, y, width*scale, height*scale);
+            ctx.translate(-width/2/scale - x, -height/2/scale- y);
         },
-        matrixTo(maxtrix) {
-            console.log(maxtrix)
-            this.transform = maxtrix;
+        matrixTo() {
+            let cos = this.imageMatrix[0];
+            let sin = this.imageMatrix[1];
+            let rad = Math.asin(sin);
+            if (cos < 0 && sin > 0) {
+                // 二象限
+                rad = Math.PI - rad;
+            } else if (cos < 0 && sin < 0) {
+                rad = Math.PI - rad;
+            } else if (cos > 0 && sin < 0) {
+                rad = 2 * Math.PI + rad;
+            }
+            let scale = cos / Math.cos(rad);
+            let x = this.imageMatrix[4];
+            let y = this.imageMatrix[5];
+            return {
+                x, y, rad, scale
+            }
         },
-        set(rad, scale){
+        set(rad, scale, x, y){
             window.requestAnimationFrame(() => {
-                this.imageMatrix = [scale * Math.cos(rad), scale * Math.sin(rad), -scale * Math.sin(rad), scale * Math.cos(rad), 0, 0];
+                let curRad = rad + this.default.rad;
+                this.imageMatrix = [scale*this.default.scale * Math.cos(curRad), Math.sin(curRad), -Math.sin(curRad), scale*this.default.scale * Math.cos(curRad), this.default.x + x, this.default.y + y];
                 this.transform = 'matrix(' + this.imageMatrix.join(',') + ')';
             });
         }
@@ -123,8 +167,10 @@ export default {
     position: absolute;
 }
 .image-box {
+    text-align: left;
     width: 300px;
-    height: 300px;
+    height: 150px;
     border: 1px solid red;
+    overflow: hidden;
 }
 </style>

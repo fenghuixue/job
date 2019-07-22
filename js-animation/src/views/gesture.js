@@ -22,12 +22,13 @@ export default class Gesture {
         return Math.sqrt(vct.x * vct.x + vct.y * vct.y)
     }
     getVectorRad(vct1, vct2) {
+        let direction = vct1.x*vct2.y - vct2.x*vct1.y>0?1:-1;
         let len1 = this.getVectorLength(vct1);
         let len2 = this.getVectorLength(vct2);
         // 两个向量的夹角公式  cosα = a*b/|a||b|
         // 弧度值
         let rad = Math.acos((vct1.x * vct2.x + vct1.y * vct2.y) / (len1 * len2));
-        return rad;
+        return rad * direction;
     }
     transToAngle(rad) {
         // 弧度转角度
