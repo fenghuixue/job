@@ -6,12 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>异步</title>
     <!-- <script src="./promise_1.js"></script> -->
-    <!-- <script src="./debunce.js"></script> -->
-    <!-- <script src="./setInterval.js"></script> -->
     <script src="./vue-2.6.10.js"></script>
-    <script src="./prototype_1.js"></script>
+    <script src="./call_apply_bind.js"></script>
     <!-- <script src="./async_await.js"></script> -->
     <!-- <script src="./generator.js"></script> -->
+    <!-- <script src="./prototype.js"></script> -->
     <style>
         .text {
             display: inline-block;
@@ -20,9 +19,30 @@
     </style>
 </head>
 <body>
-    <!-- <div id="app">
+    <div id="content-box"></div>
+    <div id="app">
         <span v-clamp="{clamp: 4}" class="text">哈哈哈哈哈哈哈哈哈哈哈哈哈</span>
     </div>
-    <script src="./clamp.js"></script> -->
+    <script src="./clamp.js"></script>
+    <script>
+        new Vue({
+            el: '#content-box',
+            data: function() {
+                return {
+
+                }
+            },
+            mounted() {
+                console.log(this)
+                this.hello()
+            },
+            methods: {
+                hello() {
+                    
+                }
+            }
+        })
+    </script>
+    
 </body>
 </html>

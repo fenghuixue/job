@@ -185,11 +185,14 @@ function defineReactive (obj, key, val) {
         enumerable: true,
         configurable: true,
         get: function reactiveGetter () {
+            // 每当触发getter, 会从全局中的某个属性获取watcher实例并将它添加到数据的依赖列表中
             console.log(key)
+            // watcher在读取数据之前，会将自己设置到全局的某个属性中（this.subs）
             dep.addSub(Dep.target);
             return val;         
         },
         set: function reactiveSetter (newVal) {
+            // 数据发生变化会向依赖列表的watcher发送通知
             if (newVal === val) return;
             val = newVal;
             dep.notify();
@@ -200,7 +203,7 @@ function defineReactive (obj, key, val) {
 class Preview {
     constructor(options) {
         this._data = options.data;
-        observer(this._data);
+        observer(this._data); // data通过observer转化成响应式
         new Watcher();
         console.log('render~', this._data['44444']);
     }
