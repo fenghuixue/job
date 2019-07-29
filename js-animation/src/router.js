@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home'
 import Transform from './views/Transform'
 import lifeCycle from './views/lifeCycle'
+import Event from './views/Event'
 
 Vue.use(Router)
 
@@ -22,5 +23,9 @@ export default new Router({
     path: '/transform',
     name: 'transform',
     component: Transform
+  }, {
+    path: '/event',
+    name: 'event',
+    component: Event
   }]
 })

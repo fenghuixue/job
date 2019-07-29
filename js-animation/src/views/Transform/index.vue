@@ -3,7 +3,7 @@
         <input type="file" class="" @change="onchange"/>
         <div class="image-box" ref="imgRef">
             <img v-if="target" 
-                width="50px"
+                width="100px"
                 ref="imageTarget"
                 :src="target" 
                 :style="{'transform': transform}"
@@ -115,13 +115,19 @@ export default {
             let img = this.$refs.imageTarget;
             let ctx = target.getContext("2d");
             ctx.clearRect(0, 0, target.offsetWidth, target.offsetHeight);
+            ctx.save();
             let width = img.offsetWidth;
             let height = img.offsetHeight;
             let {x, y, scale, rad} = this.matrixTo();
-            ctx.translate(width/2 + x, height/2 + y);
+            console.log(x, y, scale, rad, width, height)
+            ctx.translate(x + width/2*scale, y + height/2*scale);
             ctx.rotate(rad);
-            ctx.drawImage(img, x, y, width*scale, height*scale);
-            ctx.translate(-width/2/scale - x, -height/2/scale- y);
+            // let img_x = x + width/2*scale;
+            // let img_y = y + height/2*scale;
+            ctx.translate(-scale * width/2,-scale * height/2);//修正画布坐标系
+            ctx.drawImage(img, 0, 0, width*scale, height*scale);
+            ctx.restore();
+
         },
         matrixTo() {
             let cos = this.imageMatrix[0];
