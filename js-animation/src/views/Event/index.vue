@@ -30,11 +30,12 @@ export default {
             this.myEc.off('start');
         },
         onceBind() {
-            this.myEc.once('start', (e) => {
+            this.myEc.once('once', (e) => {
                 console.log('once-start', e)
             })
         },
         emitBind() {
+            this.myEc.emit('once');
             this.myEc.emit('start');
         }
 

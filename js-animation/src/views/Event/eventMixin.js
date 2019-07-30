@@ -48,10 +48,11 @@ export default function eventMixin(EventCenter) {
     EventCenter.prototype.once = function(event, fn) {
         const ec = this;
         function _on() {
-            ec.off(event, on);
+            ec.off(event, _on);
+            console.log('1111', ec._events)
             fn.apply(ec, arguments);
         }
-        on.fn = fn;
+        _on.fn = fn;
         ec.on(event, _on);
         return ec;
     }
@@ -61,8 +62,8 @@ export default function eventMixin(EventCenter) {
         const ec = this;
         let cbs = ec._events[event];
         if (cbs) {
-            const args = Array.from(arguments)
-            for(let i = 0; i < args.length; i++) {
+            const args = Array.from(arguments).slice(1);
+            for(let i = 0; i < cbs.length; i++) {
                 try {
                     cbs[i].apply(ec, args);
                 } catch(e) {
