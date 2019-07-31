@@ -30,16 +30,18 @@ export default function eventMixin(EventCenter) {
             ec._events[event] = null;
             return ec;
         }
-        if (fn) {
-            const cbs = ec._events;
-            let cb;
-            let i = cbs.length;
-            while(i--) {
-                cb = cbs[i];
-                if (cb === fn || cb.fn === fn) {
-                    cbs.splice(i, 1);
-                    break;
-                }
+        if (!fn) {
+            ec._events[event] = null
+            return ec
+        }
+        let cb;
+        let i = cbs.length;
+        while (i--) {
+            cb = cbs[i];
+            if (cb === fn || cb.fn === fn) {
+                console.log(cb === fn)
+                cbs.splice(i, 1);
+                break;
             }
         }
         return ec;
@@ -49,7 +51,6 @@ export default function eventMixin(EventCenter) {
         const ec = this;
         function _on() {
             ec.off(event, _on);
-            console.log('1111', ec._events)
             fn.apply(ec, arguments);
         }
         _on.fn = fn;
