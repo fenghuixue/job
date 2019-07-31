@@ -49,7 +49,6 @@ export default function eventMixin(EventCenter) {
         const ec = this;
         function _on() {
             ec.off(event, _on);
-            console.log('1111', ec._events)
             fn.apply(ec, arguments);
         }
         _on.fn = fn;

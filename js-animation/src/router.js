@@ -4,6 +4,7 @@ import Home from './views/Home'
 import Transform from './views/Transform'
 import lifeCycle from './views/lifeCycle'
 import Event from './views/Event'
+import myPromise from './views/myPromise'
 
 Vue.use(Router)
 
@@ -27,5 +28,9 @@ export default new Router({
     path: '/event',
     name: 'event',
     component: Event
+  }, {
+    path: '/promise',
+    name: 'promise',
+    component: myPromise
   }]
 })
