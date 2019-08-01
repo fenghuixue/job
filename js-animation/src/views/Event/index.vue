@@ -2,7 +2,7 @@
     <div>
         <button @click="onBind">绑定事件start</button>
         <button @click="offBind">移除事件start</button>
-        <button @click="onceBind">once绑定事件start</button>
+        <button @click="onceBind">once绑定事件once</button>
         <button @click="emitBind">触发事件emit</button>
     </div>
 </template>
@@ -12,31 +12,29 @@ import EventCenter from './eventCenter';
 export default {
     data () {
         return {
-           myEc: ''
+           myEc: '',
         };
     },
     mounted () {
         this.myEc = new EventCenter();
-        console.log(this.myEc)
 
     },
     methods: {
         onBind() {
-            this.myEc.on('start', (e) => {
-                console.log('on-start', e)
-            })
+            this.myEc.on('start', this.callbackFunc)
         },
         offBind() {
             this.myEc.off('start');
         },
         onceBind() {
-            this.myEc.once('once', (e) => {
-                console.log('once-start', e)
-            })
+            this.myEc.once('once', this.callbackFunc)
         },
         emitBind() {
             this.myEc.emit('once');
             this.myEc.emit('start');
+        },
+        callbackFunc(name) {
+            console.log(`callback-${name}执行了...`)
         }
 
     }
