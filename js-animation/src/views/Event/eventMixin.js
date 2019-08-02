@@ -39,7 +39,6 @@ export default function eventMixin(EventCenter) {
         while (i--) {
             cb = cbs[i];
             if (cb === fn || cb.fn === fn) {
-                console.log(cb === fn)
                 cbs.splice(i, 1);
                 break;
             }

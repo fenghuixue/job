@@ -5,6 +5,7 @@ import Transform from './views/Transform'
 import lifeCycle from './views/lifeCycle'
 import Event from './views/Event'
 import myPromise from './views/myPromise'
+import loadable from './views/reactLoadable'
 
 Vue.use(Router)
 
@@ -32,5 +33,9 @@ export default new Router({
     path: '/promise',
     name: 'promise',
     component: myPromise
+  }, {
+    path: '/loadable',
+    name: 'loadable',
+    component: loadable
   }]
 })

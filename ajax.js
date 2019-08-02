@@ -1,4 +1,4 @@
-//  Promise实现ajax
+   //  Promise实现ajax
 
 let getJson = function(url) {
     return new Promise((resolve, reject) => {
