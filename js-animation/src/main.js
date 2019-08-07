@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import Vconsole from './libs/vconsole.min.js';
 
-// Vue.config.productionTip = false
+Vue.config.productionTip = false
 // process.env.NODE_ENV === 'development' && new VConsole();
 
 const vm = new Vue({

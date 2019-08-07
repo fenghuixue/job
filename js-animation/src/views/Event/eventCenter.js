@@ -5,7 +5,6 @@
 import eventMixin from './eventMixin';
 
 function EventCenter() {
-    let ec = this;
     this._events = Object.create(null);
 } 
 
