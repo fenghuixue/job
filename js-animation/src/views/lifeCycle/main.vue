@@ -1,10 +1,14 @@
 <template>
     <div class="life-cycle">
-        
+        <div id="container">
+            <p></p>
+        </div>
+        <Left></Left>
     </div>
 </template>
 <script>
 import myVue from './myVue.js';
+import Left from './components/Left';
 export default {
     name: 'lifeCycle',
     data () {
@@ -14,14 +18,19 @@ export default {
             timer: ''
         };
     },
+    components: {
+        Left
+    },
     created() {
-        new myVue();
+        this.vueInstance = new myVue({
+            name: 'myVue'
+        });
+
+        
     },
     mounted () {
         
-    },
-    updated() {
-        
+
     },
     methods: {
         
