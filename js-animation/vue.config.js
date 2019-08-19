@@ -1,5 +1,7 @@
 const path = require('path')
 const srcDir = path.join(__dirname, 'src');
+const AddDatePlugin = require(srcDir + '/views/Webpack/AddDatePlugin.js')
+
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -20,6 +22,7 @@ module.exports = {
           'vue$',
           'vue/dist/vue.js'
         )
+  },    
     // // 路径配置
     // resolve: {
       // extensions: ['.js', '.vue', '.json'],
@@ -33,11 +36,14 @@ module.exports = {
       //   vue$: 'vue/dist/vue.js',
       // }
     // },
-    // // 插件配置
-    // plugins: [],
+    // 插件配置
+    configureWebpack: {
+      plugins: [
+        new AddDatePlugin()
+      ],
+    }
     // // webpack-load配置
     // module: {
     //   rules: []
     // }
-  }
 }
