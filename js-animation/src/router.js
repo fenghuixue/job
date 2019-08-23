@@ -6,6 +6,8 @@ import lifeCycle from './views/lifeCycle/main'
 import Event from './views/Event'
 import myPromise from './views/myPromise'
 import loadable from './views/reactLoadable'
+import Practise from './views/Practise'
+import WebComponent from './views/webComponent'
 
 Vue.use(Router)
 
@@ -37,5 +39,13 @@ export default new Router({
     path: '/loadable',
     name: 'loadable',
     component: loadable
+  }, {
+    path: '/practise',
+    name: 'practise',
+    component: Practise
+  }, {
+    path: '/webComponent',
+    name: 'WebComponent',
+    component: WebComponent
   }]
 })

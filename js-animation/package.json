@@ -21,6 +21,7 @@
     "@vue/cli": "^3.10.0",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-service": "^3.9.3",
+    "element-ui": "^2.11.1",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "snabbdom": "^0.7.3",
