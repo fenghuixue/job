@@ -5,7 +5,7 @@ let MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 let UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 let VueLoaderPlugin = require('vue-loader/lib/plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
              chunkFilename: '[id].css'
         }),
         new VueLoaderPlugin(),
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         new CopyWebpackPlugin([{
             context: './src',
             from: 'libs',
@@ -86,7 +86,13 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader', // 加浏览器前缀, 使用postcss-loader， 必须添加postcss.config.js, 引入autoprefixer
-                    'less-loader'
+                    'less-loader',
+                    {
+                        loader: path.resolve(__dirname, 'src/loaders/add.js'),
+                        options: {
+                            name: 'Add-loader'
+                        }
+                    }
                 ] 
             },
             {
