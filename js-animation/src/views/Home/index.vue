@@ -1,10 +1,12 @@
 <template>
     <div>
         <div class="quare-50" :style="{top: top + 'px', left: left + 'px'}"></div>
+        <child-component pName="father"></child-component>
     </div>
 </template>
 
 <script>
+import childComponent from './childComponent';
 export default {
     data () {
         return {
@@ -14,6 +16,7 @@ export default {
         };
     },
     mounted () {
+        this.$stat();
         let cbkHandler = function(data){
             console.log('你查询的航班结果是：票价 ' + data.msg + ' 元，');
         };
@@ -28,6 +31,9 @@ export default {
         this.move2((p) => {
             return p;
         });
+    },
+    components: {
+        childComponent
     },
     methods: {
         step() {

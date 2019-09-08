@@ -4,8 +4,9 @@
  */
 
 export function initLifecycle(vm) {
-    // 添加$root
+    // 添加$root 
     vm.$root = vm.$parent ? vm.$parent.$root : vm;
+    //vm.$children，将当前实例主动添加到父组件实例的$children属性中
     vm.$children = []
     vm.$refs = {}
     vm._watcher = null

@@ -4,6 +4,8 @@
 import { initLifecycle, callHook } from "./lifecycle";
 import {initEvents} from './events';
 import {initRender} from './render';
+import {initInjections} from './inject';
+import {initState} from './state';
 
 export function initMixin(myVue) {
     myVue.prototype._init = function (options) {
@@ -17,7 +19,7 @@ export function initMixin(myVue) {
         initEvents(vm);
         initRender(vm);
         callHook(vm, 'beforeCreate');
-        // initInjections(vm);
+        initInjections(vm);
         // initState(vm);
         // initProvide(vm);
         // callHook(vm, 'created');
