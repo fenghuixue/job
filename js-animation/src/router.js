@@ -6,6 +6,7 @@ import lifeCycle from './views/lifeCycle/main'
 import Event from './views/Event'
 import myPromise from './views/myPromise'
 import loadable from './views/reactLoadable'
+import TSTest from './views/TSTest'
 
 Vue.use(Router)
 
@@ -37,5 +38,9 @@ export default new Router({
     path: '/loadable',
     name: 'loadable',
     component: loadable
+  }, {
+    path: '/tsTest',
+    name: 'tsTest',
+    component: TSTest
   }]
 })

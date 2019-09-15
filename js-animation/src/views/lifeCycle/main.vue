@@ -9,6 +9,7 @@
 <script>
 import myVue from './myVue.js';
 import Left from './components/Left';
+
 export default {
     name: 'lifeCycle',
     data () {
@@ -22,6 +23,7 @@ export default {
         Left
     },
     created() {
+        console.log(this)
         this.vueInstance = new myVue({
             name: 'myVue'
         });

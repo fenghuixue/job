@@ -4,6 +4,16 @@
  */
 
 export function initLifecycle(vm) {
+    const options = vm.$options;
+    
+    // 找第一个抽象类
+    // let parent = options.parent;
+    // if (parent && !options.abstract) {
+    //     while (parent.$options && parent.$options.abstract) {
+    //         parent = parent.$parent;
+    //     }
+    //     parent.$children.push(vm);
+    // }
     // 添加$root
     vm.$root = vm.$parent ? vm.$parent.$root : vm;
     vm.$children = []
