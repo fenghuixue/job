@@ -14,7 +14,7 @@ arr.map(item => {
 
 console.log(arr)
 Vue.use(ElementUI)
-
+debugger;
 new Vue({
     el: '#J_view_box',
     // router,

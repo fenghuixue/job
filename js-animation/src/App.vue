@@ -1,6 +1,9 @@
 <template>
 <div id="app">
-    <router-view></router-view>
+    <div class="link-container">
+        <router-link v-for="route in router_list" :key="route.name" :to="{path: route.path}" :class="['mt-link-title', {'active': route.path == $route.path}]">{{route.name}}</router-link>
+    </div>
+    <router-view class="content-container"></router-view>
 </div>
 </template>
 
@@ -15,7 +18,9 @@ export default {
         };
     },
     computed: {
-        
+        router_list() {
+            return routers.options.routes
+        }
     },
     mounted() {
         
@@ -39,7 +44,6 @@ body {
     background-color: #efefef;
     min-height: 100vh;
     display: flex;
-    padding: 30px 20px;
 }
 #nav {
     padding: 20px;
@@ -62,5 +66,23 @@ body {
 
 .com-box {
     width: 300px;
+}
+.link-container {
+    width: 100px;
+    text-align: left;
+    padding: 20px; 
+    .mt-link-title {
+        display: block;
+    }
+}
+.content-container {
+    margin-left: 100px;
+    position: relative;
+    background: #fff; 
+    padding: 20px; 
+    min-width: 800px;  
+}
+.active {
+    color: rgb(241, 8, 8);
 }
 </style>

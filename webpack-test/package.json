@@ -23,8 +23,8 @@
     "webpack-dev-server": "^3.2.1"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "dev": "webpack-dev-server"
+    "build": "webpack --config webpack.config.js --env.platform=production",
+    "dev": "webpack-dev-server --env.platform=development"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
@@ -33,6 +33,7 @@
     "element-ui": "^2.7.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "html-webpack-plugin": "^3.2.0",
+    "loader-utils": "^1.2.3",
     "style-loader": "^0.23.1"
   }
 }

@@ -7,6 +7,8 @@ import Event from './views/Event'
 import myPromise from './views/myPromise'
 import loadable from './views/reactLoadable'
 import TSTest from './views/TSTest'
+import Practise from './views/Practise'
+import WebComponent from './views/webComponent'
 
 Vue.use(Router)
 
@@ -42,5 +44,13 @@ export default new Router({
     path: '/tsTest',
     name: 'tsTest',
     component: TSTest
+  }, {  
+    path: '/practise',
+    name: 'practise',
+    component: Practise
+  }, {
+    path: '/webComponent',
+    name: 'WebComponent',
+    component: WebComponent
   }]
 })
