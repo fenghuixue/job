@@ -1,5 +1,5 @@
 import { toggleObserving } from "./observe";
-
+import {validateProp} from './utils/props';
 export function initState(vm) {
     vm._watchers = [];
     const opts = vm.$options;
@@ -28,4 +28,6 @@ function initProps(vm, propsOptions) {
     toggleObserving(true);
     
 }
+
+
 

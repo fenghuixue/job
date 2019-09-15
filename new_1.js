@@ -5,4 +5,5 @@ function New(func) {
     }
     var slice = Array.prototype.slice;
     var ret = func.apply(res, slice.call(arguments, 1));
+    return ret && typeof ret == 'object' || typeof ret == 'function' ? ret : res;
 }
