@@ -9,6 +9,7 @@ import loadable from './views/reactLoadable'
 import TSTest from './views/TSTest'
 import Practise from './views/Practise'
 import WebComponent from './views/webComponent'
+import ProxyTest from './views/Proxy'
 
 Vue.use(Router)
 
@@ -52,5 +53,9 @@ export default new Router({
     path: '/webComponent',
     name: 'WebComponent',
     component: WebComponent
+  }, {
+    path: '/proxy',
+    name: 'ProxyTest',
+    component: ProxyTest
   }]
 })

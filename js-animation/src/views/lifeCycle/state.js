@@ -1,5 +1,8 @@
 import { toggleObserving } from "./observe";
 import {validateProp} from './utils/props';
+import {
+    defineReactive
+} from './observe';
 export function initState(vm) {
     vm._watchers = [];
     const opts = vm.$options;
@@ -28,6 +31,24 @@ function initProps(vm, propsOptions) {
     toggleObserving(true);
     
 }
+
+const sharedPropertyDefinition = {
+    enumerable: true,
+    configurable: true,
+    get: function() {},
+    set: function() {}
+}
+
+export function proxy (target, sourceKey, key) {
+   sharedPropertyDefinition.get = function proxyGetter() {
+       return this[sourceKey][key];
+   }
+   sharedPropertyDefinition.set = function proxySetter(val) {
+       this[sourceKey][key] = val;
+   }
+   Object.defineProperty(target, key, sharedPropertyDefinition);
+}
+  
 
 
 
