@@ -11,7 +11,10 @@ export default {
     props: {
         propToChild: {
             type: [Object, Number],
-            default: {}
+        },
+        validateBoolean: {
+            type: Boolean,
+            default: true
         }
     },
     data () {
@@ -20,8 +23,8 @@ export default {
         };
     },
     mounted () {
-        console.log(this)
-        validateProp('propToChild', this.$props, this.$options.propsData, this);
+        console.log(this._myProps)
+        validateProp('validateBoolean', this._myProps, this.$options.propsData, this);
     },
     methods: {
        

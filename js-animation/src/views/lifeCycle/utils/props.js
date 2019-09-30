@@ -2,7 +2,8 @@
 /**
  * @file prop
  */
-import {hasOwn, isObject} from '../shared/util';
+import {hasOwn, isObject, hyphenate} from '../shared/util';
+
 export function validateProp(key, propsOptions, propsData, vm) {
     const prop = propsOptions[key];
     const absent = !hasOwn(propsData, key);
@@ -21,7 +22,7 @@ export function validateProp(key, propsOptions, propsData, vm) {
     }
     if (value === undefined) {
         value = getPropDefaultValue(vm, prop, key);
-        const prevShouldObserve = shouldObserve;
+        // const prevShouldObserve = shouldObserve;
         // toggleObserving(true);
         // observe(value);
         // toggleObserving(prevShouldObserve);
